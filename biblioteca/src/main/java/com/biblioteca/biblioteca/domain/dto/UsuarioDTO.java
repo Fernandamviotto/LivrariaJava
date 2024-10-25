@@ -1,5 +1,14 @@
 package com.biblioteca.biblioteca.domain.dto;
 
-public class UsuarioDTO {
+import java.time.LocalDate;
 
+import lombok.Data;
+
+@Data
+public class UsuarioDTO {
+    private Long id;
+    private String nome;
+    private String email;
+    private LocalDate dataCadastro;
+    private int quantidadeLivrosEmprestados;
 }
