@@ -1,5 +1,9 @@
 package com.biblioteca.biblioteca.domain.repository;
 
-public class ILivroRepository {
-    
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.biblioteca.biblioteca.domain.entity.Livro;
+
+public interface ILivroRepository extends JpaRepository<Livro, Long> {
+
 }
