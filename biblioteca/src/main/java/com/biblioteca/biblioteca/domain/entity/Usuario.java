@@ -34,7 +34,7 @@ public class Usuario {
     private String email; // E-mail do usuario
 
     @Column(name = "data_cadastro", nullable = false)
-    private LocalDate dataCadastro; //data de cadastro do usuario
+    private LocalDate dataCadastro; // data de cadastro do usuario
 
     @Column(name = "quantidade_livros_emprestados", nullable = false)
     private int quantidadeLivrosEmprestados; // Quantidade de livros atualmente emprestados
