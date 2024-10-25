@@ -35,7 +35,7 @@ public class Livro {
     private String editora; // editora do livro
 
     @Column(name = "Ano_Publicacao", nullable = false)
-    private int ano_de_publicacao; // ano de publicacao do livro
+    private int anoPublicacao; // ano de publicacao do livro
 
     @Column(name = "Disponibilidade")
     private boolean disponibilidade; // Status do disponivel ou emprestado
