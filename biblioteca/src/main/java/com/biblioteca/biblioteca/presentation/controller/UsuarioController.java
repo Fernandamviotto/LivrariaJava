@@ -27,7 +27,8 @@ public class UsuarioController {
 
     @Autowired
     private IUsuarioService usuarioService;
-
+    
+    //Sera o metodo post
     @PostMapping
 
     public ResponseEntity<UsuarioDTO> cadastrarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
