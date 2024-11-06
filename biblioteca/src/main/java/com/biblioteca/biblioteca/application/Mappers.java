@@ -14,8 +14,8 @@ public interface Mappers {
 
     Usuario UsuarioDTOtoEntity(UsuarioDTO usuarioDTO);
 
-    LivroDTO livrotoDto(Livro livro);
+    LivroDTO livrtoDto(Livro livro);
 
-    Livro LivroDTOtoEntity(LivroDTO livroDTO);
+    Livro LivroDTOtoEntity(LivroDTO livbroDTO);
 
 }
