@@ -101,4 +101,18 @@ public class LivroService implements ILivroService {
         // retorna o DTO mapeado a partir da entidade encontrada
         return livroMapper.livrtoDto(livro.get());
     }
+
+    @Override
+    public List<LivroDTO> buscarLivrosPorDisponibilidade(boolean disponibilidade) {
+        List<Livro> livros = livroRepository.findAllByDisponibilidade(disponibilidade);
+
+        if (livros.isEmpty()) {
+            throw new CustomException("Nenhum livro encontrado com disponibilidade: " + disponibilidade);
+        }
+
+        // Converte a lista de entidades para uma lista de DTOs
+        return livros.stream()
+                .map(livroMapper::livrtoDto)
+                .collect(Collectors.toList());
+    }
 }

@@ -8,4 +8,6 @@ import com.biblioteca.biblioteca.domain.entity.Livro;
 
 public interface ILivroRepository extends JpaRepository<Livro, Long> {
     Optional<Livro> findByTitulo(String titulo);
+
+    Optional<Livro> findAllByDisponibilidade(disponibilidade);
 }
