@@ -17,4 +17,6 @@ public interface ILivroService {
     LivroDTO buscarPorId(Long id);
 
     LivroDTO buscarPorTitulo(String titulo);
+
+    List<LivroDTO> buscarLivrosPorDisponibilidade(boolean disponibilidade);
 }

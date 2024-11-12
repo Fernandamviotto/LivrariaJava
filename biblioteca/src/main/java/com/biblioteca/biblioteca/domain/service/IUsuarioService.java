@@ -17,4 +17,5 @@ public interface IUsuarioService {
     UsuarioDTO buscarPorId(Long id);
 
     UsuarioDTO buscarPorEmail(String email);
+    
 }

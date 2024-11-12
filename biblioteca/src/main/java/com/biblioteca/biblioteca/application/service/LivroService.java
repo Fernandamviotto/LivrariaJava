@@ -104,7 +104,13 @@ public class LivroService implements ILivroService {
 
     @Override
     public List<LivroDTO> buscarLivrosPorDisponibilidade(boolean disponibilidade) {
-        List<Livro> livros = livroRepository.findAllByDisponibilidade(disponibilidade);
+        // inplementar variavel
+        List<Livro> livros;
+        if (disponibilidade) {
+            livros = livroRepository.findAllByDisponibilidadeTrue();
+        } else {
+            livros = livroRepository.findAllByDisponibilidadeFalse();
+        }
 
         if (livros.isEmpty()) {
             throw new CustomException("Nenhum livro encontrado com disponibilidade: " + disponibilidade);
@@ -115,4 +121,5 @@ public class LivroService implements ILivroService {
                 .map(livroMapper::livrtoDto)
                 .collect(Collectors.toList());
     }
+
 }
