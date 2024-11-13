@@ -42,7 +42,7 @@ public class Emprestimo {
     private Livro livro; // Relacionamento com Livro
 
     @Column(name = "data_emprestimo", nullable = false)
-    private LocalDate dataemprestimo;
+    private LocalDate dataEmprestimo;
 
     @Column(name = "data_devolucao_prevista", nullable = false)
     private LocalDate dataDevolucaoPrevista;

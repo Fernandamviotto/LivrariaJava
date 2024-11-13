@@ -21,7 +21,7 @@ public interface Mappers {
     Livro LivroDTOtoEntity(LivroDTO livbroDTO);
 
     EmprestimoDTO EmprestimotoDto(Emprestimo emprestimo);
-    
+
     Emprestimo EmprestimoDTOtoEntity(EmprestimoDTO emprestimoDTO);
 
 }
