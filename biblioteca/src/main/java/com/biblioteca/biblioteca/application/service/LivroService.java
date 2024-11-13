@@ -92,14 +92,14 @@ public class LivroService implements ILivroService {
     // Buscar livro por titulo
     @Override
     public LivroDTO buscarPorTitulo(String titulo) {
-        Optional<Livro> livro = livroRepository.findByTitulo(titulo);
+        List<Livro> livro = livroRepository.findByTitulo(titulo);
 
         if (livro.isEmpty()) {
             throw new CustomException("Livro não encontrado com o titulo: " + titulo);
         }
 
         // retorna o DTO mapeado a partir da entidade encontrada
-        return livroMapper.livrtoDto(livro.get());
+        return livroMapper.livrtoDto(livro.get(0));
     }
 
     @Override
