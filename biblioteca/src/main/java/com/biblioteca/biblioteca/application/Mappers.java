@@ -23,5 +23,5 @@ public interface Mappers {
     EmprestimoDTO EmprestimotoDto(Emprestimo emprestimo);
 
     Emprestimo EmprestimoDTOtoEntity(EmprestimoDTO emprestimoDTO);
-
+        
 }
