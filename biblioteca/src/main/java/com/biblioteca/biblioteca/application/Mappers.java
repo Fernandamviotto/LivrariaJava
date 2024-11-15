@@ -1,6 +1,7 @@
 package com.biblioteca.biblioteca.application;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import com.biblioteca.biblioteca.domain.dto.EmprestimoDTO;
 import com.biblioteca.biblioteca.domain.dto.LivroDTO;
@@ -20,8 +21,12 @@ public interface Mappers {
 
     Livro LivroDTOtoEntity(LivroDTO livbroDTO);
 
+    @Mapping(target = "livroDTO", source = "livro")
+    @Mapping(target = "usuarioDTO", source = "usuario")
     EmprestimoDTO EmprestimotoDto(Emprestimo emprestimo);
 
+    @Mapping(target = "livro", source = "livroDTO")
+    @Mapping(target = "usuario", source = "usuarioDTO")
     Emprestimo EmprestimoDTOtoEntity(EmprestimoDTO emprestimoDTO);
-        
+
 }

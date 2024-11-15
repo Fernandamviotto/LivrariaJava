@@ -12,9 +12,9 @@ import lombok.Data;
 public class EmprestimoDTO {
     private Long id; // ID do empréstimo
 
-    private Long usuarioId; // Referência ao DTO do usuário
+    private UsuarioDTO usuarioDTO; // Referência ao DTO do usuário
 
-    private Long livroId; // Referência ao DTO do livro
+    private LivroDTO livroDTO; // Referência ao DTO do livro
 
     private LocalDate dataEmprestimo; // Data do empréstimo
 
