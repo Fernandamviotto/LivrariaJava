@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.biblioteca.biblioteca.application.Mappers;
 import com.biblioteca.biblioteca.domain.dto.LivroDTO;
@@ -13,6 +14,7 @@ import com.biblioteca.biblioteca.domain.repository.ILivroRepository;
 import com.biblioteca.biblioteca.domain.service.ILivroService;
 import com.biblioteca.biblioteca.shared.CustomException;
 
+@Service
 public class LivroService implements ILivroService {
 
     @Autowired

@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.biblioteca.biblioteca.domain.entity.Emprestimo;
 
 public interface IEmprestimoRepository extends JpaRepository<Emprestimo, Long> {
-    Optional<Emprestimo> findByUsuario(long UsuarioDTO);
+    Optional<Emprestimo> findByUsuario_Id(Long usuarioId);
 
-    Optional<Emprestimo> findByLivro(long LivroDTO);
+    Optional<Emprestimo> findByLivro_Id(Long livroId);
 }

@@ -63,16 +63,16 @@ public class EmprestimoService implements IEmprestimoService {
 
     @Override
     public List<EmprestimoDTO> consultarHistoricoPorUsuario(Long id) {
-        // busca todos os emprestimos do usuario
-        return emprestimoRepository.findByUsuario(0).stream()
+        // Busca todos os empréstimos do usuário pelo ID
+        return emprestimoRepository.findByUsuario_Id(id).stream()
                 .map(emprestimoMapper::EmprestimotoDto)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<EmprestimoDTO> consultarHistoricoPorLivro(Long id) {
-        // busca todos os emprestimos do livro
-        return emprestimoRepository.findByLivro(0).stream()
+        // Busca todos os empréstimos do livro pelo ID
+        return emprestimoRepository.findByLivro_Id(id).stream()
                 .map(emprestimoMapper::EmprestimotoDto)
                 .collect(Collectors.toList());
     }
