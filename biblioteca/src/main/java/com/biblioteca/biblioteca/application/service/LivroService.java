@@ -66,7 +66,7 @@ public class LivroService implements ILivroService {
         livroRepository.deleteById(id);
     }
 
-    // Listar todos os usuários
+    // Listar todos os livros
     @Override
     public List<LivroDTO> listarTodosLivros() {
         // Obtém a lista de entidades de livros e a converte para uma lista de DTOs
