@@ -1,5 +1,8 @@
 package com.biblioteca.biblioteca.application.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,7 +11,12 @@ import com.biblioteca.biblioteca.domain.dto.EmprestimoDTO;
 import com.biblioteca.biblioteca.domain.entity.Emprestimo;
 import com.biblioteca.biblioteca.domain.repository.IEmprestimoRepository;
 import com.biblioteca.biblioteca.domain.service.IEmprestimoService;
+import com.biblioteca.biblioteca.shared.CustomException;
+import com.biblioteca.biblioteca.shared.StatusEmprestimo;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Service
 public class EmprestimoService implements IEmprestimoService {
 
@@ -20,8 +28,33 @@ public class EmprestimoService implements IEmprestimoService {
 
     @Override
     public EmprestimoDTO cadastrarEmprestimo(EmprestimoDTO emprestimoDTO) {
-        // Mapeia o DTO para a entidade e salvar no banco de dados
+        // Mapeia o DTO para a entidade e salva no banco de dados
         Emprestimo emprestimo = emprestimoMapper.EmprestimoDTOtoEntity(emprestimoDTO);
+        emprestimo.setStatus(StatusEmprestimo.ATIVO);
+
+        // Salva o empréstimo no repositório
+        emprestimo = emprestimoRepository.save(emprestimo);
+
+        // Retorna o DTO mapeado a partir da entidade salva
+        return emprestimoMapper.EmprestimotoDto(emprestimo);
+
+    }
+
+    @Override
+    public EmprestimoDTO registrarDevolucao(Long id, EmprestimoDTO registrarDevolucao) {
+        // Busca o emprestimo
+        Emprestimo emprestimo = emprestimoRepository.findById(id)
+                .orElseThrow(() -> new CustomException("Emprestimo não encontrado com o ID: " + id));
+
+        // Registra devolução
+        emprestimo.setDataDevolucaoRealizada(registrarDevolucao.getDataDevolucaoRealizada());
+        emprestimo
+                .setStatus(registrarDevolucao.getDataDevolucaoRealizada().isAfter(emprestimo.getDataDevolucaoPrevista())
+                        ? StatusEmprestimo.EM_ATRASO
+                        : StatusEmprestimo.CONCLUIDO);
+        emprestimo.setMultaAplicada(registrarDevolucao.getMultaAplicada());
+
+        // Salva a devolução no repositório
         emprestimo = emprestimoRepository.save(emprestimo);
 
         // Retorna o DTO mapeado a partir da entidade salva
@@ -29,24 +62,19 @@ public class EmprestimoService implements IEmprestimoService {
     }
 
     @Override
-    public EmprestimoDTO registrarDevolucao(Long id, EmprestimoDTO registrarDevolucao) {
-        // registrar devolucao e validar se tem multa e calcular a multa
-        Emprestimo emprestimo = emprestimoMapper.EmprestimoDTOtoEntity(registrarDevolucao);
-        emprestimo = emprestimoRepository.save(emprestimo);
-
-        throw new UnsupportedOperationException("Unimplemented method 'registrarDevolucao'");
+    public List<EmprestimoDTO> consultarHistoricoPorUsuario(Long id) {
+        // busca todos os emprestimos do usuario
+        return emprestimoRepository.findByUsuario(0).stream()
+                .map(emprestimoMapper::EmprestimotoDto)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public EmprestimoDTO buscarEmprestimoIdUsuario(long id, long UsuarioDTO, EmprestimoDTO buscarEmprestimoId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarEmprestimoIdUsuario'");
-    }
-
-    @Override
-    public EmprestimoDTO buscarEmprestimoIdLivro(long id, long LivroDTO, EmprestimoDTO buscarEmprestimoId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarEmprestimoIdLivro'");
+    public List<EmprestimoDTO> consultarHistoricoPorLivro(Long id) {
+        // busca todos os emprestimos do livro
+        return emprestimoRepository.findByLivro(0).stream()
+                .map(emprestimoMapper::EmprestimotoDto)
+                .collect(Collectors.toList());
     }
 
 }

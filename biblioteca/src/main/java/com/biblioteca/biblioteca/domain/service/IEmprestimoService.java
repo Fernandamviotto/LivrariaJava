@@ -1,5 +1,7 @@
 package com.biblioteca.biblioteca.domain.service;
 
+import java.util.List;
+
 import com.biblioteca.biblioteca.domain.dto.EmprestimoDTO;
 
 public interface IEmprestimoService {
@@ -11,8 +13,8 @@ public interface IEmprestimoService {
     EmprestimoDTO registrarDevolucao(Long id, EmprestimoDTO registrarDevolucao);
 
     // Consultar histórico de empréstimos por usuário
-    EmprestimoDTO buscarEmprestimoIdUsuario(long id, long UsuarioDTO, EmprestimoDTO buscarEmprestimoId);
+    List<EmprestimoDTO> consultarHistoricoPorUsuario(Long id);
 
     // Consultar histórico de empréstimos por livro
-    EmprestimoDTO buscarEmprestimoIdLivro(long id, long LivroDTO, EmprestimoDTO buscarEmprestimoId);
+    List<EmprestimoDTO> consultarHistoricoPorLivro(Long id);
 }
