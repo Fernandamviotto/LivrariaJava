@@ -9,12 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.biblioteca.biblioteca.domain.dto.LivroDTO;
 import com.biblioteca.biblioteca.domain.service.ILivroService;
 import com.biblioteca.biblioteca.shared.CustomException;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@RestController
+@RequestMapping("api/livros")
+@Tag(name = "Livros", description = "APIs relacionadas a livros")
 
 public class LivroController {
 

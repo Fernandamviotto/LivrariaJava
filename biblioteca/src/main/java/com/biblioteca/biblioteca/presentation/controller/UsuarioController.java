@@ -27,10 +27,9 @@ public class UsuarioController {
 
     @Autowired
     private IUsuarioService usuarioService;
-    
-    //Sera o metodo post
-    @PostMapping
 
+    // Sera o metodo post
+    @PostMapping
     public ResponseEntity<UsuarioDTO> cadastrarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
         try {
             UsuarioDTO savedUsuario = usuarioService.cadastrarUsuario(usuarioDTO);
@@ -41,7 +40,6 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-
     public ResponseEntity<UsuarioDTO> atualizarUsuario(@PathVariable Long id,
             @RequestBody UsuarioDTO usuarioAtualizado) {
         try {
