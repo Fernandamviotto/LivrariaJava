@@ -14,19 +14,18 @@ public class SwaggerConfig implements WebMvcConfigurer {
     public GroupedOpenApi publicApi() {
         return GroupedOpenApi.builder()
                 .group("v1")
-                .pathsToMatch("api/**")
-                .packagesToScan("com.biblioteca.livrariajava")
-                .addOpenApiMethodFilter(method -> method.getDeclaringClass()
-                        .isAnnotationPresent(RestController.class))
+                .pathsToMatch("/api/**")
+                .packagesToScan("com.biblioteca.biblioteca")
+                .addOpenApiMethodFilter(method -> method.getDeclaringClass().isAnnotationPresent(RestController.class))
                 .addOpenApiCustomizer(customOpenApi())
                 .build();
     }
 
     public OpenApiCustomizer customOpenApi() {
         return openApi -> {
-            openApi.getInfo().setTitle("Seminario 3 ADS/ESW");
+            openApi.getInfo().setTitle("Seminário 3 ADS/ESW");
             openApi.getInfo().setVersion("1.0.0");
-            openApi.getInfo().setDescription("API de gerenciamento de emprestimo de livros");
+            openApi.getInfo().setDescription("API de gerenciamento de empréstimo de livros.");
         };
     }
 }
